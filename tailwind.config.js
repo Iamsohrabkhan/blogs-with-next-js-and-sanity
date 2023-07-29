@@ -5,14 +5,25 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+    extend:{
+      colors:{
+        dark:"#20232A",
+        light:"#fff",
+        light_primary : "#eeeeee",
+        
       },
+      fontFamily: {
+        SpaceGrotesk:[`var(--font-spaceGrotesk)`, 'san-serif'],
+        Trocchi:[`var(--font-trocchi)`, 'san-serif'],
     },
+    animation: {
+      'spin-slow': 'spin 0.2s linear 1',
+    },
+    }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

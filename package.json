@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.4.12",
+    "@portabletext/react": "^3.0.4",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/client": "^6.1.7",
+    "@sanity/image-url": "^1.0.2",
     "autoprefixer": "10.4.14",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
@@ -17,5 +22,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "flowbite-typography": "^1.0.3"
   }
 }
