@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {Star } from "@/components/icons/star";
+import { Star } from "@/components/icons/star";
 import client from "@/components/lib/client";
 import { urlFor } from "@/components/lib/imageurl";
 import { PortableText } from "@portabletext/react";
@@ -39,63 +39,35 @@ const BlogContent = async ({ params }) => {
       />
     );
   };
-
-  const codeBlock = ({ children }) => {
-    return (
-      <pre className="bg-green-400 py-2 px-1">
-        <code>{children}</code>
-      </pre>
-    );
+  const CustomCode = ({ value }) => {
+    return <pre className="">{value}</pre>;
   };
-
-
-  const em = {
-    marks: {
-      // Ex. 1: custom renderer for the em / italics decorator
-      // em: ({children}) => <em className="text-green-600 font-semibold">{children}</em>,
-    },
-    block: {
-      // Ex. 1: customizing common block types
-      h1: ({ children }) => <h1 className="text-2xl">{children}</h1>,
-      blockquote: ({ children }) => (
-        <blockquote className="border-l-purple-500">{children}</blockquote>
-      ),
-
-      // Ex. 2: rendering custom styles
-      customHeading: ({ children }) => (
-        <h2 className="text-lg text-primary text-purple-700">{children}</h2>
-      ),
-    },
-  };
+  const HighlightDecorator = (props) => (
+    <span className="bg-indigo-400 text-light p-1 mx-1 rounded">
+      {props.children}
+    </span>
+  );
 
   const components = {
     types: {
       image: SampleImageComponent,
-      code: codeBlock,
-
       // Any other custom types you have in your content
       // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
     },
+    marks: {
+      // code: CustomCode,
+      highlight: HighlightDecorator,
+    },
   };
-  7;
 
   return (
     <main className="prose mx-auto py-24 dark:prose-invert prose-indigo prose-img:rounded-md px-5">
       <article>
+        {/* content */}
         <h1>{data?.title}</h1>
-        <p>{data?.description}</p>
 
-        {/* author */}
-        <div className="h-10 space-x-16  [&>*]:-translate-y-8">
-          <div className="relative w-10 h-10">
-            <Image
-              src={urlFor(data?.author?.image?.asset?._ref).width(200).url()}
-              fill
-              alt={data?.author?.name}
-              className="object-cover object-center rounded-full"
-            />
-          </div>
-          <div className="name font-bold">By : {data?.author?.name}</div>
+        <div className="">
+          <PortableText value={data?.body} components={components} />
         </div>
         <div className="my-2">
           <div className="inline-flex items-center justify-center w-full">
@@ -106,9 +78,38 @@ const BlogContent = async ({ params }) => {
           </div>
         </div>
 
-        {/* content */}
-        <div className="">
-          <PortableText value={data?.body} components={components} />
+        {/* author */}
+        <div>
+          <PortableText value={data?.author?.bio} components={components} />
+        </div>
+
+        <div className=" space-x-14">
+          <div className="relative w-10 h-10 -translate-y-8">
+            <Image
+              src={urlFor(data?.author?.image?.asset?._ref).width(200).url()}
+              fill
+              alt={data?.author?.name}
+              className="object-cover object-center rounded-full"
+            />
+          </div>
+          <div className="-space-y-1 -translate-y-8 ">
+            <div className="name font-bold text-sm">
+              By : {data?.author?.name}
+            </div>
+            <div className="text-sm">
+              Joined in{" "}
+              <span className="font-bold">
+                {" "}
+                {new Date(data?.author?._createdAt).toLocaleDateString(
+                  "en-US",
+                  {
+                    year: "numeric",
+                    month: "long",
+                  }
+                )}
+              </span>
+            </div>
+          </div>
         </div>
       </article>
     </main>
