@@ -9,16 +9,34 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: "#20232A",
+        dark: "#000000",
         light: "#fff",
         light_primary: "#eeeeee",
       },
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        caveat: ['Caveat', 'cursive'],
+        inter: ["Inter", "sans-serif"],
+        caveat: ["Caveat", "cursive"],
       },
       animation: {
         "spin-slow": "spin 0.2s linear 1",
+      },
+      screens: {
+        sm: "640px",
+        // => @media (min-width: 640px) { ... }
+
+        md: "768px",
+        // => @media (min-width: 768px) { ... }
+
+        customb : "950px",
+
+        lg: "1024px",
+        // => @media (min-width: 1024px) { ... }
+
+        xl: "1280px",
+        // => @media (min-width: 1280px) { ... }
+
+        "2xl": "1536px",
+        // => @media (min-width: 1536px) { ... }
       },
     },
   },
