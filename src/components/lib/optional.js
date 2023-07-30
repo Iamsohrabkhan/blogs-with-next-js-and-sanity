@@ -1,9 +1,10 @@
-const { default: Image } = require("next/image");
+import Image from "next/image";
+import { urlFor } from "./imageurl";
 
 const SampleImageComponent = ({ value, isInline }) => {
     return (
       <Image
-        src={urlFor(value).url()}
+        src={urlFor(value).width.url()}
         alt={value.alt || " "}
         loading="lazy"
         className="object-cover object-center"

@@ -14,7 +14,7 @@ const Blogscard = ({ data }) => {
           <div>
 
           <div className="font-caveat font-medium text-2xl text-indigo-500 dark:text-indigo-300 mb-1 sm:mb-0 capitalize">
-           <Link href={`/blogs/${curr.slug.current}`}>{curr.title}</Link> 
+           <Link className="line-clamp-2" href={`/blogs/${curr.slug.current}`}>{curr.title}</Link> 
           </div>
             <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-24 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full px-2">
               {formatDate(curr.publishedAt)}

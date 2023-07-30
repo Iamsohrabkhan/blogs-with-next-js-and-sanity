@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { Star } from "@/components/icons/star";
 import client from "@/components/lib/client";
 import { urlFor } from "@/components/lib/imageurl";
@@ -7,7 +6,6 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
 
-export const revalidate = 60 // revalidate this page every 60 seconds
 const getData = async (currSlug) => {
   const query = `*[_type == "post" && slug.current == "${currSlug}"][0]{
     slug { current },
@@ -20,9 +18,10 @@ const getData = async (currSlug) => {
     publishedAt
 }
 `;
-  const data = await client.fetch(query);
-  return data;
+const data = await client.fetch(query);
+return data;
 };
+export const revalidate = 60 // revalidate this page every 60 seconds
 const BlogContent = async ({ params }) => {
   const data = await getData(params.slug);
   return (
@@ -51,7 +50,7 @@ const BlogContent = async ({ params }) => {
         <div className=" space-x-14">
           <div className="relative w-10 h-10 -translate-y-8">
             <Image
-              src={urlFor(data?.author?.image?.asset?._ref).width(200).url()}
+              src={urlFor(data?.author?.image?.asset?._ref).url()}
               fill
               alt={data?.author?.name}
               className="object-cover object-center rounded-full"
