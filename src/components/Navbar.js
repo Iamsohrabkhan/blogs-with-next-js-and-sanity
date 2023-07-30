@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Themebutton from "./themebutton";
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const active = usePathname();
  
   return (
@@ -13,7 +12,7 @@ const Navbar = () => {
 
   
   <nav className="w-full max-w-3xl mx-auto py-4 ">
-    <div className="flex justify-between items-center ">
+    <div className="flex justify-between items-center px-16 md:px-10 lg:px-0">
       <div className="item ">
         <ul className="flex items-center gap-5">
           <li><Link href="/" className={` text-base font-serif  ${active==="/"? "text-indigo-500" : "dark:text-white"}`}>Home</Link></li>

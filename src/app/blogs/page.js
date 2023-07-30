@@ -1,6 +1,8 @@
 import React from "react";
 import Blogscard from "./blogscard";
 import client from "@/components/lib/client";
+
+export const revalidate = 60 // revalidate this page every 60 seconds
 const getData= async()=>{
   const query = `*[_type == "post"] {
     mainImage { asset },

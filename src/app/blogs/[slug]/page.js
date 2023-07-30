@@ -2,9 +2,12 @@
 import { Star } from "@/components/icons/star";
 import client from "@/components/lib/client";
 import { urlFor } from "@/components/lib/imageurl";
+import { optional } from "@/components/lib/optional";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
+
+export const revalidate = 60 // revalidate this page every 60 seconds
 const getData = async (currSlug) => {
   const query = `*[_type == "post" && slug.current == "${currSlug}"][0]{
     slug { current },
@@ -22,44 +25,6 @@ const getData = async (currSlug) => {
 };
 const BlogContent = async ({ params }) => {
   const data = await getData(params.slug);
-
-  const SampleImageComponent = ({ value, isInline }) => {
-    return (
-      <Image
-        src={urlFor(value).url()}
-        alt={value.alt || " "}
-        loading="lazy"
-        className="object-cover object-center"
-        width={500}
-        height={500}
-        style={{
-          // Display alongside text if image appears inside a block text span
-          display: isInline ? "inline-block" : "block",
-        }}
-      />
-    );
-  };
-  const CustomCode = ({ value }) => {
-    return <pre className="">{value}</pre>;
-  };
-  const HighlightDecorator = (props) => (
-    <span className="bg-indigo-400 text-light p-1 mx-1 rounded">
-      {props.children}
-    </span>
-  );
-
-  const components = {
-    types: {
-      image: SampleImageComponent,
-      // Any other custom types you have in your content
-      // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
-    },
-    marks: {
-      // code: CustomCode,
-      highlight: HighlightDecorator,
-    },
-  };
-
   return (
     <main className="prose mx-auto py-24 dark:prose-invert prose-indigo prose-img:rounded-md px-5">
       <article>
@@ -67,7 +32,7 @@ const BlogContent = async ({ params }) => {
         <h1>{data?.title}</h1>
 
         <div className="">
-          <PortableText value={data?.body} components={components} />
+          <PortableText value={data?.body} components={optional} />
         </div>
         <div className="my-2">
           <div className="inline-flex items-center justify-center w-full">
@@ -80,7 +45,7 @@ const BlogContent = async ({ params }) => {
 
         {/* author */}
         <div>
-          <PortableText value={data?.author?.bio} components={components} />
+          <PortableText value={data?.author?.bio} components={optional} />
         </div>
 
         <div className=" space-x-14">
