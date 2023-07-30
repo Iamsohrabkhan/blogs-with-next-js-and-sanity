@@ -22,6 +22,9 @@ const data = await client.fetch(query);
 return data;
 };
 export const revalidate = 60 // revalidate this page every 60 seconds
+
+
+
 const BlogContent = async ({ params }) => {
   const data = await getData(params.slug);
   return (
@@ -80,4 +83,19 @@ const BlogContent = async ({ params }) => {
   );
 };
 
-export default BlogContent;
+
+export async function getStaticPaths() {
+  // Fetch the slugs of the blog posts from Sanity
+  const query = `*[_type == 'post']{slug}`;
+  const posts = await client.fetch(query);
+
+  // Map the slugs to the required format for Next.js dynamic routes
+  const paths = posts.map((post) => ({ params: { slug: post.slug.current } }));
+
+  return {
+    paths,
+    fallback: false, // Set to true if you want to use fallback pages for non-generated paths
+  };
+}
+
+export default BlogContent
