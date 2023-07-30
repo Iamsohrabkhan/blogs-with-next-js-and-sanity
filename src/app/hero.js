@@ -3,7 +3,7 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <div className="dark:bg-dark">
-      <section className=" mt-9 md:mt-4 lg:mt-0 py-10 sm:py-12 lg:py-20">
+      <section className=" mt-20 md:mt-4 lg:mt-0 py-10 sm:py-12 lg:py-20">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
