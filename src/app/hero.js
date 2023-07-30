@@ -18,7 +18,7 @@ const Hero = () => {
               </p>
               <Link
                 href="/blogs"
-                className="inline-flex items-center px-6 py-4 mt-4 font-semibold text-black dark:text-white transition-all duration-200 bg-yellow-300 rounded-full lg:mt-8 hover:bg-yellow-400 focus:bg-yellow-400"
+                className="inline-flex items-center px-6 py-4 mt-4 font-semibold text-black dark:text-white transition-all duration-200 bg-yellow-300 rounded-full lg:mt-8 hover:bg-yellow-400 focus:bg-yellow-400 dark:bg-yellow-600"
                 role="button"
               >
                 See Blogs

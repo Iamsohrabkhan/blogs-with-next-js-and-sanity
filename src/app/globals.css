@@ -2,18 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+ @layer base{
+   h1,h2,h3,h4 {
+     font-family: var(--font-lora);
+     font-weight: 600;
+   }
 
-:root {
-  /* Your default theme */
-  --background: white;
-  --foreground: black;
-}
-
-[data-theme='dark'] {
-  --background: black;
-  --foreground: white;
-}
-
+ }
 ::-webkit-scrollbar {
   width: 17px;
   height: 17px;
