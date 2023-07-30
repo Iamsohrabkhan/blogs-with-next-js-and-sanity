@@ -94,8 +94,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false, // Set to true if you want to use fallback pages for non-generated paths
+    fallback: true, // Set to true if you want to use fallback pages for non-generated paths
   };
 }
-
 export default BlogContent
